@@ -1,0 +1,38 @@
+{
+  "name": "order-ui",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "history": "^4.7.2",
+    "jss": "^9.0.0",
+    "material-ui": "^1.0.0-beta.17",
+    "path-to-regexp": "^2.1.0",
+    "query-string": "^5.0.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/history": "^4.6.1",
+    "@types/jest": "^21.1.2",
+    "@types/jss": "^0.6.28",
+    "@types/node": "^8.0.34",
+    "@types/path-to-regexp": "^1.7.0",
+    "@types/query-string": "^5.0.0",
+    "@types/react": "^16.0.10",
+    "@types/react-dom": "^16.0.1",
+    "@types/react-redux": "^5.0.10",
+    "@types/recompose": "^0.24.2",
+    "@types/redux": "^3.6.0",
+    "@types/redux-thunk": "^2.1.0",
+    "react-scripts-ts": "2.7.0"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  }
+}
