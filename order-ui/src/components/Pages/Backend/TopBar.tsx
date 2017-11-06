@@ -36,7 +36,6 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<'topBar'>,
                     position: 'fixed', // This has to be here due to a types issue
                 }}
             >
-                This Worked!!
             </Row>
         )
     }

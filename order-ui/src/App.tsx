@@ -15,11 +15,8 @@ class App extends React.Component {
         <div className="App">
           <Route component={<AppWrap {...this.props} />} exact={false} >
             <div>This shit should work</div>
+            <Route component={<DashBoard />} path="/" exact={false} />
           </Route>
-          <Route component={<DashBoard />} path="/" exact={false} />
-          <p className="App-intro">
-            To get started, edit <code>src/App.tsx</code> and save to reload.
-          </p>
         </div>
       </ReactRedux.Provider>
     );

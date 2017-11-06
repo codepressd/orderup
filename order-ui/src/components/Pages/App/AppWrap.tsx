@@ -23,6 +23,7 @@ export class AppWrap extends React.Component<AppWrapProps, never>{
                     <Column>
                         <BackendWrap {...this.props} />
                         <div className='contentWrap'>
+                            {this.props.children}
                         </div>
                     </Column>
                 </Column>
