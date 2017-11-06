@@ -12,9 +12,6 @@ interface BrowserRouteProps {
     render?: (obj: object) => JSX.Element;
 }
 // This is a very simple route match which really need to take more time to make more robust
-// Right now I have a combination of our current routing removed from index.tsx and I've put that in to RouteMatching
-// I would prefer to make this have just route matching and you render a component that you pass in if a match occurs.
-// For that to happen I believe we will need more of our state in the redux store.
 
 class BrowserRoute extends React.Component<BrowserRouteProps, {}>{
 
@@ -27,7 +24,6 @@ class BrowserRoute extends React.Component<BrowserRouteProps, {}>{
             exact,
             render,
         } = this.props;
-
         // Check for matching route need to figure out route matching
         let match: any = matchRoute(route, { path, exact });
 
@@ -36,7 +32,7 @@ class BrowserRoute extends React.Component<BrowserRouteProps, {}>{
         }
         // This is no good and needs more time to solve. But would take some time digging in to our routePattern
         if (component) {
-            return (React.cloneElement(component));
+            return (React.cloneElement(component, { ...this.props }));
 
         }
         if (render) {
