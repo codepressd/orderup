@@ -1,13 +1,12 @@
 
-import * as React from "react";
-import * as ReactRedux from "react-redux";
-import * as Redux from "redux";
+import * as React from 'react';
+import * as ReactRedux from 'react-redux';
+import * as Redux from 'redux';
 import { withStyles, WithStyles } from 'material-ui/styles';
-import IconButton from 'material-ui/IconButton';
+import ButtonBase from 'material-ui/ButtonBase';
 import Shop from 'material-ui-icons/ShoppingBasket';
 import Orders from 'material-ui-icons/AccountBalance';
 import Overview from 'material-ui-icons/BubbleChart';
-import Tooltip from 'material-ui/Tooltip';
 
 
 import { Column } from '../../Layout/Column';
@@ -28,17 +27,28 @@ const styles = (theme: any) => ({
 
     },
     sidebarWrap: {
-        top: '72px',
+        top: '96px',
         width: '64px',
+        fontSize: '11px',
+        lineHeight: 0,
 
     },
     iconWrap: {
         width: '100%',
+        marginTop: '4px',
+        '& p': {
+            marginTop: 0,
+        }
 
     },
     iconWrapActive: {
         width: '100%',
+        marginTop: '4px',
         borderRight: '2px solid #ea7b38',
+        '& p': {
+            marginTop: 0,
+            color: '#ea7b38',
+        },
         '& svg': {
             fill: '#ea7b38',
         }
@@ -67,29 +77,41 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                         position: 'absolute',
                     }}
                 >
-                    <div className={classes.iconWrap}>
-                        <Tooltip id='tooltip-overview' title='Overview' placement='right'>
-                            <IconButton>
-                                <Overview />
-                            </IconButton>
-                        </Tooltip>
-                    </div>
-                    <div className={classes.iconWrapActive}>
-                        <Tooltip id='tooltip-shop' title='Shop' placement='right'>
-                            <IconButton>
-                                <Shop />
-                            </IconButton>
-                        </Tooltip>
-                    </div>
-                    <div className={classes.iconWrap}>
-                        <Tooltip id='tooltip-orders' title='Orders' placement='right'>
-                            <IconButton>
-                                <Orders />
-                            </IconButton>
-                        </Tooltip>
-                    </div>
+                    <Column className={classes.iconWrap}>
+                        <ButtonBase
+                            centerRipple
+                            style={{
+                                flexDirection: "column"
+                            }}
+                        >
+                            <Overview />
+                            <p>Overview</p>
+                        </ButtonBase>
+                    </Column>
+                    <Column className={classes.iconWrapActive}>
+                        <ButtonBase
+                            centerRipple
+                            style={{
+                                flexDirection: "column"
+                            }}
+                        >
+                            <Shop />
+                            <p>Shop</p>
+                        </ButtonBase>
+                    </Column>
+                    <Column className={classes.iconWrap}>
+                        <ButtonBase
+                            centerRipple
+                            style={{
+                                flexDirection: "column"
+                            }}
+                        >
+                            <Orders />
+                            <p>Orders</p>
+                        </ButtonBase>
+                    </Column>
                 </Column>
-            </Column>
+            </Column >
         )
     }
 }

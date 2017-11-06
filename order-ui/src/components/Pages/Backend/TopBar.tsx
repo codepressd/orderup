@@ -4,6 +4,7 @@ import * as Redux from 'redux';
 import { withStyles, WithStyles } from 'material-ui/styles';
 
 import * as RouterActions from '../../../actions/RouterActions';
+import { Row } from '../../Layout/Row';
 
 interface TopBarProps {
     children?: any;
@@ -29,14 +30,14 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<'topBar'>,
     render() {
         const { classes } = this.props;
         return (
-            <div
+            <Row
                 className={classes.topBar}
                 style={{
                     position: 'fixed', // This has to be here due to a types issue
                 }}
             >
                 This Worked!!
-            </div>
+            </Row>
         )
     }
 }
