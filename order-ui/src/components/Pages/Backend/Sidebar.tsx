@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as ReactRedux from 'react-redux';
 import * as Redux from 'redux';
-import { withStyles, WithStyles } from 'material-ui/styles';
+import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
 import Shop from 'material-ui-icons/ShoppingBasket';
 import Orders from 'material-ui-icons/AccountBalance';
@@ -16,9 +16,11 @@ import * as RouterActions from "../../../actions/RouterActions";
 interface SideBarProps {
     children?: any;
     classes: any;
+    changeLocation?: (location: string) => void;
+    route?: any;
 }
 
-const styles = (theme: any) => ({
+const styles = (theme: Theme) => ({
     sidebar: {
         width: "64px",
         background: '#fff',
@@ -27,7 +29,7 @@ const styles = (theme: any) => ({
 
     },
     sidebarWrap: {
-        top: '96px',
+        top: '80px',
         width: '64px',
         fontSize: '11px',
         lineHeight: 0,
@@ -77,9 +79,10 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                         position: 'absolute',
                     }}
                 >
-                    <Column className={classes.iconWrap}>
+                    <Column className={this.props.route.pathname === "/dashboard" ? classes.iconWrapActive : classes.iconWrap}>
                         <ButtonBase
                             centerRipple
+                            onClick={this.pushLocation("dashboard")}
                             style={{
                                 flexDirection: "column"
                             }}
@@ -88,9 +91,10 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                             <p>Overview</p>
                         </ButtonBase>
                     </Column>
-                    <Column className={classes.iconWrapActive}>
+                    <Column className={this.props.route.pathname === "/shop" ? classes.iconWrapActive : classes.iconWrap}>
                         <ButtonBase
                             centerRipple
+                            onClick={this.pushLocation("shop")}
                             style={{
                                 flexDirection: "column"
                             }}
@@ -99,9 +103,10 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                             <p>Shop</p>
                         </ButtonBase>
                     </Column>
-                    <Column className={classes.iconWrap}>
+                    <Column className={this.props.route.pathname === "/orders" ? classes.iconWrapActive : classes.iconWrap}>
                         <ButtonBase
                             centerRipple
+                            onClick={this.pushLocation("orders")}
                             style={{
                                 flexDirection: "column"
                             }}
@@ -114,12 +119,15 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
             </Column >
         )
     }
+    pushLocation = (location: string) => (event: any) => {
+        this.props.changeLocation && this.props.changeLocation(location)
+    }
 }
 
 const SideBar = withStyles(styles)(SideBars);
 
-const mapStateToProps = (state: any) => ({
-    state: state.Activeuser,
+const mapStateToProps = (store: any) => ({
+    route: store.RouterReducer,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
