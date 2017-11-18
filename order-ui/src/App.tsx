@@ -4,7 +4,9 @@ import Route from './routerUtils/Route';
 
 import { store } from './Store';
 import { AppWrap } from './components/Pages/App/AppWrap';
-import { DashBoard } from './components/Pages/Backend/Dashboard'
+import { DashBoard } from './components/Pages/Backend/Dashboard';
+import { Shop } from './components/Pages/Backend/Shop';
+import { Orders } from './components/Pages/Backend/Orders';
 
 import './App.css';
 
@@ -13,14 +15,11 @@ class App extends React.Component {
     return (
       <ReactRedux.Provider store={store}>
         <div className="App">
-          <div className="App-header">
-            <h2>Welcome to React</h2>
-          </div>
-          <Route component={<AppWrap />} exact={false} />
-          <Route component={<DashBoard />} path="/brah" exact={false} />
-          <p className="App-intro">
-            To get started, edit <code>src/App.tsx</code> and save to reload.
-          </p>
+          <Route component={<AppWrap classes={{}} {...this.props} />} exact={false} >
+            <Route component={<DashBoard />} path="/dashboard" exact={false} />
+            <Route component={<Shop />} path="/shop" exact={true} />
+            <Route component={<Orders />} path="/orders" exact={true} />
+          </Route>
         </div>
       </ReactRedux.Provider>
     );

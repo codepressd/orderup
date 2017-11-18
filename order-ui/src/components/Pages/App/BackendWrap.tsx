@@ -3,6 +3,9 @@ import * as ReactRedux from 'react-redux';
 import * as Redux from 'redux';
 
 import * as RouterActions from '../../../actions/RouterActions';
+import TopBar from '../Backend/TopBar';
+import SideBar from '../Backend/Sidebar';
+
 
 interface BackendWrapProps {
     children?: any;
@@ -15,7 +18,10 @@ export class BackendWrap extends React.Component<BackendWrapProps, never>{
 
     render() {
         return (
-            <div></div>
+            <div className="appWrap">
+                <TopBar classes={{}} />
+                <SideBar classes={{}} />
+            </div>
         )
     }
 }
