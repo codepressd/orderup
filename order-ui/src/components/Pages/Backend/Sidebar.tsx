@@ -6,7 +6,7 @@ import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 import ButtonBase from 'material-ui/ButtonBase';
 import Shop from 'material-ui-icons/ShoppingBasket';
 import Orders from 'material-ui-icons/AccountBalance';
-import Overview from 'material-ui-icons/BubbleChart';
+import Overview from 'material-ui-icons/ViewQuilt';
 
 
 import { Column } from '../../Layout/Column';
@@ -22,15 +22,16 @@ interface SideBarProps {
 
 const styles = (theme: Theme) => ({
     sidebar: {
-        width: "64px",
+        width: "80px",
         background: '#fff',
         boxShadow: '0 0 5px 0 rgba(0,0,0, .32)',
+        borderRight: '4px solid #fff',
         height: '100vh',
 
     },
     sidebarWrap: {
-        top: '80px',
-        width: '64px',
+        top: '72px',
+        width: '80px',
         fontSize: '11px',
         lineHeight: 0,
 
@@ -38,8 +39,13 @@ const styles = (theme: Theme) => ({
     iconWrap: {
         width: '100%',
         marginTop: '4px',
+        borderRight: '2px solid transparent',
         '& p': {
             marginTop: 0,
+            color: '#a5a5a5'
+        },
+        '& svg': {
+            fill: '#a5a5a5'
         }
 
     },
@@ -88,7 +94,7 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                             }}
                         >
                             <Overview />
-                            <p>Overview</p>
+                            <p>DashBoard</p>
                         </ButtonBase>
                     </Column>
                     <Column className={this.props.route.pathname === "/shop" ? classes.iconWrapActive : classes.iconWrap}>

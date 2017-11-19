@@ -12,7 +12,9 @@ interface AppWrapProps {
 
 const styles = (theme: Theme) => ({
     contentWrap: {
-        marginTop: "72px",
+        marginTop: "64px",
+        width: "100%",
+        background: "rgb(243,243,243)",
     }
 
 });
@@ -25,7 +27,7 @@ class _AppWrap extends React.Component<AppWrapProps & WithStyles<keyof typeof st
 
     render() {
         const userLoggedIn = true;
-        const { classes } = this.props;
+        //const { classes } = this.props;
         if (userLoggedIn) {
             return (
                 <Column
@@ -33,9 +35,9 @@ class _AppWrap extends React.Component<AppWrapProps & WithStyles<keyof typeof st
                 >
                     <Row>
                         <BackendWrap {...this.props} />
-                        <div className={classes.contentWrap}>
-                            {this.props.children}
-                        </div>
+                        {/*} <div className={classes.contentWrap}>
+                        //     {this.props.children}
+            </div>*/}
                     </Row>
                 </Column>
             )
