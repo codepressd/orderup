@@ -16,7 +16,7 @@ class App extends React.Component {
       <ReactRedux.Provider store={store}>
         <div className="App">
           <Route component={<AppWrap classes={{}} {...this.props} />} exact={false} >
-            <Route component={<DashBoard />} path="/dashboard" exact={false} />
+            <Route component={<DashBoard classes={{}} />} path="/dashboard" exact={false} />
             <Route component={<Shop />} path="/shop" exact={true} />
             <Route component={<Orders />} path="/orders" exact={true} />
           </Route>
