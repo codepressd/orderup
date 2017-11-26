@@ -27,6 +27,7 @@ const styles = (theme: Theme) => ({
         boxShadow: '0 0 5px 0 rgba(0,0,0, .32)',
         borderRight: '4px solid #fff',
         height: '100vh',
+        zIndex: 10,
 
     },
     sidebarWrap: {

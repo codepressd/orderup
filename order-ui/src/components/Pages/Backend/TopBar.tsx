@@ -32,6 +32,7 @@ const styles = (theme: Theme) => ({
         alignItems: 'center',
         justifyContent: 'space-between',
         fontFamily: theme.typography.fontFamily,
+        zIndex: 20,
     },
     logoWrap: {
         justifyContent: 'center',

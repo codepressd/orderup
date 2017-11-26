@@ -1,6 +1,9 @@
 
 import * as React from "react";
 import Paper from 'material-ui/Paper';
+import Button from 'material-ui/Button';
+import Input from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 import Person from 'material-ui-icons/Person';
 
@@ -11,7 +14,12 @@ import { RaisedSection } from "../../Layout/RaisedSection"
 
 interface ProfileProps {
     classes: any;
-}
+};
+
+interface ProfileState {
+    userEdit: boolean;
+    businessEdit: boolean;
+};
 
 const styles = (theme: Theme) => ({
     outerWrap: {
@@ -22,7 +30,6 @@ const styles = (theme: Theme) => ({
     wrap: {
         width: "100%",
         justifyContent: "space-between",
-
     },
     mainTitle: {
         textAlign: "left",
@@ -36,7 +43,7 @@ const styles = (theme: Theme) => ({
         width: 150,
         height: 150,
         margin: 10,
-        border: "1px solid #a5a5a5",
+        border: "1px dashed #a5a5a5",
         alignItems: "center",
         justifyContent: "center",
     },
@@ -49,26 +56,58 @@ const styles = (theme: Theme) => ({
         marginTop: "10px",
         justifyContent: "space-between"
     },
+    profileArea: {
+        position: "relative",
+        width: "48%",
+        padding: 8,
+        textAlign: "left"
+    },
+    editButtonWrap: {
+        position: "absolute",
+        bottom: 0,
+        right: 0,
+    },
+    editButton: {
+        fontSize: "14px",
+        textTransform: "capitalize"
+    },
+    userWrap: {
+        margin: "10px 5px",
+
+    },
+    userName: {
+        fontWeight: 600,
+        fontSize: "18px"
+    },
+    businessWrap: {
+        margin: "10px 5px",
+
+    },
 
 } as React.CSSProperties);
 
-class _Profile extends React.Component<ProfileProps & WithStyles<keyof typeof styles>, never>{
+class _Profile extends React.Component<ProfileProps & WithStyles<keyof typeof styles>, ProfileState>{
+
+    constructor(props: ProfileProps) {
+        super(props)
+        this.state = {
+            userEdit: true,
+            businessEdit: true,
+        }
+    }
     render() {
         const { classes } = this.props;
         return (
             <Column
                 className={classes.outerWrap}
             >
-                <div
-                    className={classes.mainTitle}
-                >
-                    User Profile
-                </div>
                 <Paper>
                     <Row
                         className={classes.wrap}
                     >
-                        <Row>
+                        <Row
+                            className={classes.profileArea}
+                        >
                             <Column
                                 className={classes.avatarWrap}
                             >
@@ -76,14 +115,53 @@ class _Profile extends React.Component<ProfileProps & WithStyles<keyof typeof st
                                     className={classes.avatar}
                                 />
                             </Column>
-                            <Column>
-                                Persons name
+                            <Column
+                                className={classes.userWrap}
+                            >
+                                <div
+                                    className={classes.userName}
+                                >
+                                    Chris Reeder
+                                </div>
+                                <FormControl>
+                                    <Input placeholder="General Manager" disableUnderline={this.state.userEdit} disabled={this.state.userEdit} />
+                                    <Input placeholder="chrsi@gmail.com" disableUnderline={this.state.userEdit} disabled={this.state.userEdit} />
+                                    <Input placeholder="530-444-8888" disableUnderline={this.state.userEdit} disabled={this.state.userEdit} />
+                                </FormControl>
+
+                                <div
+                                    className={classes.editButtonWrap}
+                                >
+                                    <Button
+                                        onClick={this.onEditClick("user")}
+                                        className={classes.editButton}
+                                    >
+                                        {this.state.userEdit ? "Edit" : "Save"}
+                                    </Button>
+                                </div>
                             </Column>
                         </Row>
-                        <Column>
-                            Quick facts
-                    </Column>
+                        <Column
+                            className={`${classes.profileArea} ${classes.businessWrap}`}
+                        >
+                            Business Info
+                            <FormControl>
+                                <Input placeholder="Cool Biz Name" disableUnderline={this.state.businessEdit} disabled={this.state.businessEdit} />
+                                <Input placeholder="123 Somestreet" disableUnderline={this.state.businessEdit} disabled={this.state.businessEdit} />
+                                <Input placeholder="Portland, Oregon" disableUnderline={this.state.businessEdit} disabled={this.state.businessEdit} />
 
+                            </FormControl>
+                            <div
+                                className={classes.editButtonWrap}
+                            >
+                                <Button
+                                    onClick={this.onEditClick("business")}
+                                    className={classes.editButton}
+                                >
+                                    Edit
+                            </Button>
+                            </div>
+                        </Column>
                     </Row>
                 </Paper>
                 <Row
@@ -106,6 +184,18 @@ class _Profile extends React.Component<ProfileProps & WithStyles<keyof typeof st
                 </Row>
             </Column>
         )
+
+    };
+    onEditClick = (edit: string) => (event: any) => {
+        if (edit === "user") {
+            this.setState({
+                userEdit: !this.state.userEdit
+            });
+        } else {
+            this.setState({
+                businessEdit: !this.state.businessEdit
+            })
+        }
     }
 }
 
