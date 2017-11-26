@@ -39,14 +39,14 @@ export class _DashBoard extends React.Component<DashBoardProps & WithStyles<keyo
                     className={classes.columnWraps}
                 >
                     <Paper>
-                        something in here
+                        <h2>Main DashBoard</h2>
                     </Paper>
                 </Column>
                 <Column
                     className={classes.columnWraps}
                 >
                     <Paper>
-                        something in here
+                        <h2>Main 2 DashBoard</h2>
                     </Paper>
                 </Column>
             </Row>

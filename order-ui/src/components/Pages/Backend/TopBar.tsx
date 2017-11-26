@@ -3,12 +3,13 @@ import * as React from "react";
 import * as ReactRedux from "react-redux";
 import * as Redux from "redux";
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
-//import Input from 'material-ui/Input';
-//import { FormControl } from 'material-ui/Form';
+import Input, { InputAdornment } from 'material-ui/Input';
+import { FormControl } from 'material-ui/Form';
 import Avatar from 'material-ui/Avatar';
 import ButtonBase from 'material-ui/ButtonBase';
 import Bubbles from 'material-ui-icons/BubbleChart';
 import Person from 'material-ui-icons/Person';
+import Search from 'material-ui-icons/Search';
 import Favorite from 'material-ui-icons/FavoriteBorder';
 
 import * as RouterActions from "../../../actions/RouterActions";
@@ -41,6 +42,7 @@ const styles = (theme: Theme) => ({
     rightWrap: {
         width: '100%',
         justifyContent: 'space-between',
+        alignItems: 'center',
     },
     fromControl: {
         "& > div": {
@@ -48,15 +50,21 @@ const styles = (theme: Theme) => ({
         }
     },
     searchWrap: {
-        marginTop: "4px",
+        width: '40%',
+        marginLeft: 184,
     },
     searchBarInput: {
-        border: '1px solid rgba(104,47,112, .2)',
         borderRadius: '4%',
+        color: "#a5a5a5",
         paddingRight: '5px',
         paddingLeft: '5px',
-        boxShadow: '4px 2px 2px 1px rgb(243,243,243)',
-        width: '200px'
+        width: '100%',
+        "&:before": {
+            backgroundColor: '#ea7b38 !important',
+        },
+        "&:after": {
+            backgroundColor: 'rgb(104, 47, 112)',
+        }
     },
     userWrap: {
         alignItems: 'center',
@@ -129,15 +137,16 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<keyof type
                         <Column
                             className={classes.searchWrap}
                         >
-                            {/*<FormControl
+                            <FormControl
                                 className={classes.formControl}
                             >
                                 <Input
                                     placeholder="Search"
                                     className={classes.searchBarInput}
+                                    endAdornment={<InputAdornment position="end"><Search /></InputAdornment>}
                                 >
                                 </Input>
-                            </FormControl>*/}
+                            </FormControl>
                         </Column>
                         <Row className={classes.userWrap}>
 
