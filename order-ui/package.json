@@ -17,6 +17,7 @@
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.5",
     "@types/history": "^4.6.1",
     "@types/jest": "^21.1.2",
     "@types/jss": "^0.6.28",
@@ -29,7 +30,10 @@
     "@types/recompose": "^0.24.2",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
-    "react-scripts-ts": "2.7.0"
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "react-scripts-ts": "2.7.0",
+    "react-test-renderer": "^16.1.1"
   },
   "scripts": {
     "start": "react-scripts-ts start",

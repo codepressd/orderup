@@ -23,7 +23,7 @@ const styles = (theme: Theme) => ({
 
 })
 
-export class _DashBoard extends React.Component<DashBoardProps & WithStyles<keyof typeof styles>, never>{
+class _DashBoard extends React.Component<DashBoardProps & WithStyles<keyof typeof styles>, never>{
 
     constructor(props: DashBoardProps) {
         super(props)

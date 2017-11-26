@@ -38,11 +38,12 @@ const styles = (theme: Theme) => ({
     },
     iconWrap: {
         width: '100%',
-        marginTop: '4px',
+        marginTop: '2px',
         borderRight: '2px solid transparent',
         '& p': {
             marginTop: 0,
-            color: '#a5a5a5'
+            color: '#a5a5a5',
+            fontFamily: theme.typography.fontFamily,
         },
         '& svg': {
             fill: '#a5a5a5'
@@ -94,7 +95,7 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
                             }}
                         >
                             <Overview />
-                            <p>DashBoard</p>
+                            <p>Dashboard</p>
                         </ButtonBase>
                     </Column>
                     <Column className={this.props.route.pathname === "/shop" ? classes.iconWrapActive : classes.iconWrap}>

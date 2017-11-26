@@ -18,6 +18,7 @@ import { Column } from '../../Layout/Column';
 
 interface TopBarProps {
     classes: any;
+    changeLocation?: (location: string) => void;
 }
 
 const styles = (theme: Theme) => ({
@@ -29,7 +30,8 @@ const styles = (theme: Theme) => ({
         top: 0,
         position: 'fixed',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        fontFamily: theme.typography.fontFamily,
     },
     logoWrap: {
         justifyContent: 'center',
@@ -38,6 +40,8 @@ const styles = (theme: Theme) => ({
     },
     bubbleColor: {
         fill: "#ea7b38",
+        width: '32px',
+        height: '32px',
     },
     rightWrap: {
         width: '100%',
@@ -59,6 +63,7 @@ const styles = (theme: Theme) => ({
         paddingRight: '5px',
         paddingLeft: '5px',
         width: '100%',
+        fontFamily: theme.typography.fontFamily,
         "&:before": {
             backgroundColor: '#ea7b38 !important',
         },
@@ -85,10 +90,11 @@ const styles = (theme: Theme) => ({
         padding: '0 10px',
         '& p': {
             marginTop: 0,
-            color: '#a5a5a5'
+            color: '#a5a5a5',
+            fontFamily: theme.typography.fontFamily,
         },
         '& svg': {
-            fill: '#a5a5a5'
+            fill: '#a5a5a5',
         }
 
     },
@@ -160,6 +166,7 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<keyof type
                             >
                                 <ButtonBase
                                     centerRipple
+                                    onClick={this.pushLocation("/Profile")}
                                 >
                                     <Avatar>
                                         <Person />
@@ -188,6 +195,9 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<keyof type
                 </Row>
             </Column>
         )
+    }
+    pushLocation = (location: string) => (event: any) => {
+        this.props.changeLocation && this.props.changeLocation(location)
     }
 }
 
