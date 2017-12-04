@@ -1,19 +1,35 @@
+lib-cov
+*.seed
+*.log
 *.csv
 *.dat
-*.iml
-*.log
 *.out
 *.pid
-*.seed
-*.sublime-*
-*.swo
+*.gz
 *.swp
-*.tgz
-*.xml
-.DS_Store
-.idea
-.project
-.strong-pm
-coverage
+
+pids
+logs
+results
+tmp
+
+#Build
+public/css/main.css
+
+# API keys and secrets
+.env
+
+# Dependency directory
 node_modules
-npm-debug.log
+bower_components
+
+# Editors
+.idea
+*.iml
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Ignore built ts files
+dist/**/*
