@@ -49,7 +49,7 @@ passport.use(new LocalStrategy({ usernameField: "email" }, (email, password, don
  * Sign in using Email and Password JWT
  */
 
-passport.use(new);
+// passport.use(new);
 
 
 /**

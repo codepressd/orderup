@@ -22,25 +22,23 @@ interface SideBarProps {
 
 const styles = (theme: Theme) => ({
     sidebar: {
-        width: "80px",
+        width: "88px",
         background: '#fff',
         boxShadow: '0 0 5px 0 rgba(0,0,0, .32)',
-        borderRight: '4px solid #fff',
         height: '100vh',
         zIndex: 10,
 
     },
     sidebarWrap: {
         top: '72px',
-        width: '80px',
+        width: '88px',
         fontSize: '11px',
         lineHeight: 0,
 
     },
     iconWrap: {
         width: '100%',
-        marginTop: '2px',
-        borderRight: '2px solid transparent',
+        marginTop: '4px',
         '& p': {
             marginTop: 0,
             color: '#a5a5a5',
@@ -52,11 +50,8 @@ const styles = (theme: Theme) => ({
 
     },
     iconWrapActive: {
-        width: '100%',
-        marginTop: '4px',
-        borderRight: '2px solid #ea7b38',
+        extend: "iconWrap",
         '& p': {
-            marginTop: 0,
             color: '#ea7b38',
         },
         '& svg': {

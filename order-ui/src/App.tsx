@@ -9,6 +9,7 @@ import { DashBoard } from './components/Pages/Backend/Dashboard';
 import { Shop } from './components/Pages/Backend/Shop';
 import { Orders } from './components/Pages/Backend/Orders';
 import { Profile } from './components/Pages/Backend/Profile';
+import { Login } from './components/Pages/Frontend/Login';
 
 import './App.css';
 
@@ -27,7 +28,8 @@ class App extends React.Component {
         <MuiThemeProvider theme={theTheme}>
           <div className="App">
             <Route component={<AppWrap classes={{}} {...this.props} />} exact={false} >
-              <Route component={<Profile classes={{}} />} path="/Profile" exact={true} />
+              <Route component={<Login classes={{}} />} path="/login" exact={true} />
+              <Route component={<Profile classes={{}} />} path="/profile" exact={true} />
               <Route component={<DashBoard classes={{}} />} path="/dashboard" exact={false} />
               <Route component={<Shop />} path="/shop" exact={true} />
               <Route component={<Orders />} path="/orders" exact={true} />

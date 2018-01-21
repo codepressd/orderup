@@ -1,5 +1,5 @@
 import * as React from 'react';
-//import {ArcSeries} from 'react-vis';
+import Axios from 'axios';
 import Paper from 'material-ui/Paper';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 
@@ -21,12 +21,23 @@ const styles = (theme: Theme) => ({
         padding: '5px'
     }
 
-})
+});
 
-class _DashBoard extends React.Component<DashBoardProps & WithStyles<keyof typeof styles>, never>{
+class DashBoard_ extends React.Component<DashBoardProps & WithStyles<keyof typeof styles>, never>{
 
     constructor(props: DashBoardProps) {
         super(props)
+    }
+
+    componentDidMount() {
+        Axios.get("/api")
+            .then((res: any) => {
+                console.log("this worked", res.data);
+            })
+            .catch((error: any) => {
+                console.log("this errored", error);
+            });
+
     }
 
     render() {
@@ -54,4 +65,4 @@ class _DashBoard extends React.Component<DashBoardProps & WithStyles<keyof typeo
     }
 }
 
-export const DashBoard = withStyles(styles)(_DashBoard);
+export const DashBoard = withStyles(styles)(DashBoard_);

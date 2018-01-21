@@ -15,7 +15,9 @@ export class FrontendWrap extends React.Component<FrontendWrapProps, never>{
 
     render() {
         return (
-            <div></div>
+            <div>
+                {this.props.children}
+            </div>
         )
     }
 }

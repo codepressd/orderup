@@ -3,6 +3,7 @@ import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 import { Column } from '../../Layout/Column';
 import { Row } from '../../Layout/Row';
 import BackendWrap from './BackendWrap';
+import FrontendWrap from './FrontendWrap';
 
 interface AppWrapProps {
     classes: any;
@@ -12,22 +13,22 @@ interface AppWrapProps {
 
 const styles = (theme: Theme) => ({
     contentWrap: {
-        marginTop: "64px",
-        width: "100%",
-        background: "rgb(243,243,243)",
+        marginTop: '64px',
+        width: '100%',
+        background: 'rgb(249,249,249)',
     }
 
 });
 
-class _AppWrap extends React.Component<AppWrapProps & WithStyles<keyof typeof styles>, never>{
+class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof styles>, never>{
 
     constructor(props: AppWrapProps) {
         super(props);
     }
 
     render() {
-        const userLoggedIn = true;
-        //const { classes } = this.props;
+        const userLoggedIn = false;
+        // const { classes } = this.props;
         if (userLoggedIn) {
             return (
                 <Column
@@ -35,23 +36,20 @@ class _AppWrap extends React.Component<AppWrapProps & WithStyles<keyof typeof st
                 >
                     <Row>
                         <BackendWrap {...this.props} />
-                        {/*} <div className={classes.contentWrap}>
-                        //     {this.props.children}
-            </div>*/}
                     </Row>
                 </Column>
-            )
+            );
 
         } else {
             return (
                 <Column
                     className="frontend-app-wrap"
                 >
-                    Frontend
+                    <FrontendWrap {...this.props} />
                     {/*React.cloneElement(this.props.children, this.props)*/}
                 </Column>
-            )
+            );
         }
     }
 }
-export const AppWrap = withStyles(styles)(_AppWrap);
+export const AppWrap = withStyles(styles)(AppWrap_);
