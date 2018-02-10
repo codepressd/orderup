@@ -27,7 +27,7 @@ class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof st
     }
 
     render() {
-        const userLoggedIn = false;
+        const userLoggedIn = true;
         // const { classes } = this.props;
         if (userLoggedIn) {
             return (

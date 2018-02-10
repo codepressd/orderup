@@ -18,6 +18,7 @@ export type UserModel = mongoose.Document & {
   profile: {
     firstName: string,
     lastName: string,
+    title: string,
     companyName: string,
     companyLogo: string,
     phone: string,
@@ -55,6 +56,7 @@ const userSchema = new mongoose.Schema({
   profile: {
     firstName: String,
     lastName: String,
+    title: String,
     companyName: String,
     companyLogo: String,
     phone: String,
@@ -69,7 +71,8 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['restaurant', 'supplier', 'supplier-restaurant'],
-    default: 'restaurant'
+    default: 'restaurant',
+    required: true
   },
   childRole: String,
   userView: {

@@ -116,7 +116,7 @@ export let getLogin = (req: Request, res: Response) => {
  * Sign in using email and password.
  */
 export let postLogin = (req: Request, res: Response, next: NextFunction) => {
-  console.log(req, "this fired");
+
   req.assert("email", "Email is not valid").isEmail();
   req.assert("password", "Password cannot be blank").notEmpty();
   req.sanitize("email").normalizeEmail({ gmail_remove_dots: false });
@@ -124,15 +124,13 @@ export let postLogin = (req: Request, res: Response, next: NextFunction) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    req.flash("errors", errors);
-    return res.redirect("/login");
+    return res.status(401).send(errors);
   }
 
   passport.authenticate("local", (err: Error, user: UserModel, info: LocalStrategyInfo) => {
     if (err) { return next(err); }
     if (!user) {
-      req.flash("errors", info.message);
-      return res.redirect("/login");
+      return res.status(401).send(info.message);
     }
     req.logIn(user, (err) => {
       if (err) { return next(err); }
@@ -177,8 +175,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    req.flash("errors", errors);
-    return res.redirect("/signup");
+    return res.status(405).send(errors);
   }
 
   const user = new User({
@@ -190,6 +187,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
       firstName: "",
       lastName: "",
       profileImage: "",
+      title: "",
       companyName: req.body.businessName,
       companyLogo: "",
       address: "",
@@ -208,7 +206,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
     if (err) { return next(err); }
     if (existingUser) {
       req.flash("errors", { msg: "Account with that email address already exists." });
-      return res.redirect("/signup");
+      return res.status(402).send({ msg: "Account with that email address already exists." });
     }
     user.save((err) => {
       if (err) { return next(err); }
@@ -216,7 +214,7 @@ export let postSignup = (req: Request, res: Response, next: NextFunction) => {
         if (err) {
           return next(err);
         }
-        res.redirect("/");
+        res.status(200).send({ msg: "user sucessfully signed up" });
       });
     });
   });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 // import * as ReactRedux from 'react-redux';
 // import * as Redux from 'redux';
+import Axios from 'axios';
 import Bubbles from 'material-ui-icons/BubbleChart';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 
@@ -25,71 +26,79 @@ const styles = (theme: Theme) => ({
         alignItems: 'center',
     },
     logoWrap: {
-        width: "80px",
-        alignItems: "center",
-        color: "rgb(104, 47, 112)",
-        fontSize: "20px"
+        width: '80px',
+        alignItems: 'center',
+        color: 'rgb(104, 47, 112)',
+        fontSize: '20px'
     },
     columnWraps: {
         width: '40%',
         padding: '5px',
         height: '236px',
-        color: "rgb(104, 47, 112)"
+        color: 'rgb(104, 47, 112)'
     },
     columnWrapLeft: {
         extend: 'columnWraps',
         fontSize: "50px",
         "& input": {
-            display: "block",
-            margin: "20px auto",
-            width: "90%",
-            height: "30px",
-            fontSize: "20px",
+            display: 'block',
+            margin: '20px auto',
+            width: '90%',
+            height: '30px',
+            fontSize: '20px',
+            border: {
+                radius: '4px',
+                width: '1px',
+                style: 'solid',
+                color: 'rgb(240,240,240)'
+            },
             "&:focus": {
-                outline: "none"
+                outline: 'none'
             }
 
         },
         "& button": {
-            float: "right",
-            background: "rgb(104, 47, 112)",
-            fontSize: "20px",
-            padding: "8px",
-            width: "100px",
-            marginRight: "4%",
-            color: "#fff",
-            cursor: "pointer",
-            transition: "all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+            float: 'right',
+            background: 'rgb(104, 47, 112)',
+            fontSize: '20px',
+            padding: '8px',
+            width: '100px',
+            marginRight: '4%',
+            borderRadius: '4px',
+            color: '#fff',
+            cursor: 'pointer',
+            transition: 'all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
             "&:hover": {
-                background: "rgba(231,111,49, 0.9)",
+                background: 'rgba(231,111,49, 0.9)',
             }
         }
     },
     columnWrapRight: {
         extend: 'columnWraps',
-        background: "rgb(249,249,249)",
-        textAlign: "left",
-        padding: "30px",
-        justifyContent: "space-between",
+        background: 'rgb(249,249,249)',
+        textAlign: 'left',
+        padding: '30px',
+        justifyContent: 'space-between',
         "& span": {
-            fontSize: "35px",
+            fontSize: '35px',
         },
         "& p": {
-            fontSize: "18px",
+            fontSize: '18px',
         },
         "& button": {
-            background: "transparent",
-            border: "1px solid rgb(104, 47, 112)",
-            fontSize: "20px",
-            padding: "8px",
-            width: "150px",
-            marginRight: "4%",
-            color: "rgb(104, 47, 112)",
-            cursor: "pointer",
-            transition: "all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
+            background: 'transparent',
+            border: '1px solid rgb(104, 47, 112)',
+            fontSize: '20px',
+            padding: '8px',
+            width: '150px',
+            marginRight: '4%',
+            borderRadius: '4px',
+            color: 'rgb(104, 47, 112)',
+            cursor: 'pointer',
+            transition: 'all 800ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
             "&:hover": {
-                background: "rgb(104, 47, 112)",
-                color: "#fff",
+                background: 'rgb(104, 47, 112)',
+                color: '#fff',
             }
         }
 
@@ -107,6 +116,21 @@ class Login_ extends React.Component<LoginProps & WithStyles<keyof typeof styles
         super(props);
     }
 
+    handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const data = {
+            "email": e.currentTarget["email"].value,
+            "password": e.currentTarget["password"].value
+        }
+        Axios.post("api/user/login", data)
+            .then((res: any) => {
+                console.log("this worked", res.data);
+            })
+            .catch((error: any) => {
+                console.log("this errored", error);
+            });
+    }
+
     render() {
         const { classes } = this.props;
         return (
@@ -118,9 +142,9 @@ class Login_ extends React.Component<LoginProps & WithStyles<keyof typeof styles
                 <Row className={classes.centerWrap}>
                     <Column className={classes.columnWrapLeft}>
                         <span>Login</span>
-                        <form>
-                            <input placeholder="Email" />
-                            <input placeholder="Password" />
+                        <form onSubmit={this.handleSubmit}>
+                            <input placeholder="Email" name="email" required />
+                            <input placeholder="Password" name="password" type="password" required />
                             <button type="submit">Login</button>
                         </form>
                     </Column>

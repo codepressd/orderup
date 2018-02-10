@@ -167,7 +167,7 @@ export class TopBars extends React.Component<TopBarProps & WithStyles<keyof type
                             >
                                 <ButtonBase
                                     centerRipple
-                                    onClick={this.pushLocation("/Profile")}
+                                    onClick={this.pushLocation("/profile")}
                                 >
                                     <Avatar>
                                         <Person />

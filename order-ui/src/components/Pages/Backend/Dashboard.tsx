@@ -14,7 +14,7 @@ interface DashBoardProps {
 
 const styles = (theme: Theme) => ({
     dashWrap: {
-        padding: "5px",
+        padding: '5px',
     },
     columnWraps: {
         width: '100%',

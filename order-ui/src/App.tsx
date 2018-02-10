@@ -10,6 +10,7 @@ import { Shop } from './components/Pages/Backend/Shop';
 import { Orders } from './components/Pages/Backend/Orders';
 import { Profile } from './components/Pages/Backend/Profile';
 import { Login } from './components/Pages/Frontend/Login';
+import { Signup } from './components/Pages/Frontend/Signup';
 
 import './App.css';
 
@@ -29,6 +30,7 @@ class App extends React.Component {
           <div className="App">
             <Route component={<AppWrap classes={{}} {...this.props} />} exact={false} >
               <Route component={<Login classes={{}} />} path="/login" exact={true} />
+              <Route component={<Signup classes={{}} />} path="/signup" exact={true} />
               <Route component={<Profile classes={{}} />} path="/profile" exact={true} />
               <Route component={<DashBoard classes={{}} />} path="/dashboard" exact={false} />
               <Route component={<Shop />} path="/shop" exact={true} />
