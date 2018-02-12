@@ -1,23 +1,27 @@
 {
-  "name": "rest-api",
+  "name": "aws-nodejs-typescript",
   "version": "1.0.0",
-  "description": "",
+  "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
+    "@types/aws-lambda": "0.0.22",
+    "@types/node": "^8.0.57",
     "serverless-offline": "^3.17.0",
-    "serverless-webpack": "^4.3.0",
-    "ts-loader": "^3.5.0",
-    "typescript": "^2.7.1",
-    "webpack": "^3.11.0"
+    "serverless-webpack": "^4.0.0",
+    "ts-loader": "^2.3.7",
+    "typescript": "^2.5.2",
+    "webpack": "^3.6.0"
   },
+  "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+  "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "dotenv": "^5.0.0",
+    "jsonwebtoken": "^8.1.1",
+    "lodash": "^4.17.5",
     "mongoose": "^5.0.4"
   }
 }
