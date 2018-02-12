@@ -1,9 +1,13 @@
 {
   "compilerOptions": {
-    "sourceMap": true,
-    "lib": [
-      "es5",
-      "es2015.promise"
-    ]
-  }
+    "target": "es6",
+    "module": "commonjs"
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "types": [
+    "node",
+    "aws-sdk"
+  ]
 }

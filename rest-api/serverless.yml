@@ -10,10 +10,17 @@ provider:
   name: aws
   runtime: nodejs6.10
 
+custom:
+  webpackIncludeModules: true
+  serverless-offline:
+    port: 3001
+
 functions:
-  hello:
-    handler: handler.hello
+  postSignup:
+    handler: functions/users/signup.postSignup
     events:
       - http:
-          method: get
-          path: hello
+          method: post
+          path: api/user/signup
+          cors: true
+          integration: lambda

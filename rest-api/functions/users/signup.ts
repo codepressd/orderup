@@ -1,13 +1,12 @@
 import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
+import * as jwt from 'jsonwebtoken';
 
 import { connectToDatabase } from '../../db';
 import User from '../../models/User';
 import { generateToken } from '../../utils/token';
 
 // config environment variables for database
-dotenv.config({ path: '../../variables.env' });
+require('dotenv').config({ path: '../../variables.env' });
 
 const jwtExpiration = '4h';
 
