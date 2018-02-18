@@ -24,7 +24,7 @@ export const postLogin: Handler = (event: APIGatewayEvent, context: Context, cb:
                     .then((res) => {
                         // Need to set up interface for User info
                         const userInfo = setUserInfo(user);
-                        const response = formatLoginSuccessResponse(200, "This worked", userInfo, userInfo);
+                        const response = formatLoginSuccessResponse(200, "This worked", userInfo);
                         cb(null, response);
                     })
                     .catch((err) => {

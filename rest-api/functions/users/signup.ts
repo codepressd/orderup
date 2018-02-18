@@ -47,7 +47,7 @@ export const postSignup: Handler = (event: APIGatewayEvent, context: Context, cb
                         cb(null, res);
                     }
                     const userInfo = setUserInfo(user);
-                    const res = formatLoginSuccessResponse(200, "This Worked", userInfo, userInfo);
+                    const res = formatLoginSuccessResponse(200, "This Worked", userInfo);
                     cb(null, res);
                 });
             });
@@ -57,4 +57,4 @@ export const postSignup: Handler = (event: APIGatewayEvent, context: Context, cb
             const res = formatErrorResponse(401, err.message);
             cb(null, res);
         });
-}
+};

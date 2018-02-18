@@ -12,7 +12,7 @@ export const formatErrorResponse = (statusCode: number, message: string) => {
     }
 }
 
-export function formatLoginSuccessResponse<T>(statusCode: number, message: string, userInfo: any, responseData: T) {
+export function formatLoginSuccessResponse<T>(statusCode: number, message: string, user: T) {
     return {
         statusCode,
         headers: {
@@ -20,8 +20,8 @@ export function formatLoginSuccessResponse<T>(statusCode: number, message: strin
         },
         body: JSON.stringify({
             success: true,
-            token: 'JWT ' + generateToken(userInfo),
-            responseData,
+            token: 'JWT ' + generateToken(user),
+            user,
         })
     }
 }

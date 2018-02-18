@@ -1,17 +1,19 @@
 import * as React from 'react';
-// import * as ReactRedux from 'react-redux';
-// import * as Redux from 'redux';
-import Axios from 'axios';
+import * as ReactRedux from 'react-redux';
+import * as Redux from 'redux';
+// import Axios from 'axios';
 import Bubbles from 'material-ui-icons/BubbleChart';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
 
 import { Column } from '../../Layout/Column';
 import { Row } from '../../Layout/Row';
-//import * as RouterActions from '../../../actions/RouterActions';
+import * as RouterActions from '../../../actions/RouterActions';
+import { loginRequest } from '../../../actions/UserActions';
 
 interface LoginProps {
     classes: any;
     children?: any;
+    requestLogin?: (data: any) => void;
 }
 
 const styles = (theme: Theme) => ({
@@ -122,13 +124,10 @@ class Login_ extends React.Component<LoginProps & WithStyles<keyof typeof styles
             "email": e.currentTarget["email"].value,
             "password": e.currentTarget["password"].value
         }
-        Axios.post("api/user/login", data)
-            .then((res: any) => {
-                console.log("this worked", JSON.parse(res.data.body));
-            })
-            .catch((error: any) => {
-                console.log("this errored", error);
-            });
+        {
+            this.props.requestLogin &&
+                this.props.requestLogin(data);
+        }
     }
 
     render() {
@@ -163,18 +162,19 @@ class Login_ extends React.Component<LoginProps & WithStyles<keyof typeof styles
     }
 }
 
-export const Login = withStyles(styles)(Login_);
+// const Login = withStyles(styles)(Login_);
 
-// const mapStateToProps = (state: any) => ({
-//     state: state.Activeuser,
-// });
+const mapStateToProps = (state: any) => ({
+    state: state.Activeuser,
+});
 
-// const mapDispatchToProps = (dispatch: any) => ({
-//     changeLocation: Redux.bindActionCreators(RouterActions.push, dispatch),
-// });
+const mapDispatchToProps = (dispatch: any) => ({
+    changeLocation: Redux.bindActionCreators(RouterActions.push, dispatch),
+    requestLogin: Redux.bindActionCreators(loginRequest, dispatch)
+});
 
-// const mergeProps = (stateProps: Object, dispatchProps: Object, ownProps: Object) => {
-//     return { ...ownProps, ...stateProps, ...dispatchProps };
-// };
+const mergeProps = (stateProps: Object, dispatchProps: Object, ownProps: Object) => {
+    return { ...ownProps, ...stateProps, ...dispatchProps };
+};
 
-// export default ReactRedux.connect(mapStateToProps, mapDispatchToProps, mergeProps)(Login);
+export const Login = ReactRedux.connect(mapStateToProps, mapDispatchToProps, mergeProps)(withStyles(styles)(Login_));
