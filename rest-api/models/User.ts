@@ -103,11 +103,23 @@ userSchema.pre("save", function save(next) {
     });
 });
 
-userSchema.methods.comparePassword = function (candidatePassword: string, cb: (err: any, isMatch: any) => {}) {
-    bcrypt.compare(candidatePassword, this.password, (err: mongoose.Error, isMatch: boolean) => {
-        cb(err, isMatch);
+userSchema.methods.comparePassword = function (candidatePassword: string) {
+    return new Promise((resolve, reject) => {
+        bcrypt.compare(candidatePassword, this.password, (err: mongoose.Error, isMatch: boolean) => {
+            if (err) return reject(err);
+            else if (!isMatch) reject(new Error('Incorrect Password'));
+            else resolve(isMatch);
+        });
     });
+    // bcrypt.compare(candidatePassword, this.password, (err: mongoose.Error, isMatch: boolean) => {
+    //     console.log({ isMatch });
+    //     cb(err, isMatch);
+    // });
 };
+
+userSchema.methods.validPassword = function (passwordAttempt: string) {
+    return bcrypt.compareSync(passwordAttempt, this.password);
+}
 
 
 /**

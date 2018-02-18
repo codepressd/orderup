@@ -1,19 +1,17 @@
 import * as mongoose from "mongoose";
 
 mongoose.Promise = global.Promise;
-
-let isConnected: boolean;
-
+let isConnected: boolean = false;
 export const connectToDatabase = () => {
     if (isConnected) {
         console.log('using existing database connection');
         return Promise.resolve();
+    } else {
+        console.log('using new database connection', { isConnected });
+        return mongoose.connect(process.env.DB_CONNECT, { poolSize: 10 })
+            .then(db => {
+                isConnected = true;
+            });
     }
 
-    console.log('using new database connection');
-
-    return mongoose.connect(process.env.DB)
-        .then(db => {
-            isConnected = db.connections[0].readyState;
-        });
 };

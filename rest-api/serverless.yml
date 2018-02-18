@@ -18,9 +18,24 @@ custom:
 functions:
   postSignup:
     handler: functions/users/signup.postSignup
+    environment:
+      DB_CONNECT: ${file(./serverless.env.yml):dev.DB_CONNECT}
+      SECRET: ${file(./serverless.env.yml):dev.SECRET}
     events:
       - http:
           method: post
           path: api/user/signup
+          cors: true
+          integration: lambda
+          
+  postLogin:
+    handler: functions/users/login.postLogin
+    environment:
+      DB_CONNECT: ${file(./serverless.env.yml):dev.DB_CONNECT}
+      SECRET: ${file(./serverless.env.yml):dev.SECRET}
+    events:
+      - http:
+          method: post
+          path: api/user/login
           cors: true
           integration: lambda

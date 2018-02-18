@@ -9,7 +9,7 @@ export const authorize = (event: APIGatewayEvent, context: Context, cb: Callback
 
     try {
         // Verify JWT
-        const decoded = jwt.verify(token.replace(/^JWT\s/, ''), process.env.JWT_SECRET);
+        const decoded = jwt.verify(token.replace(/^JWT\s/, ''), process.env.SECRET);
         const user = decoded.user;
 
         // Checks if the user's scopes allow her to call the current function

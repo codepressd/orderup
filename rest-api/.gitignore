@@ -10,3 +10,4 @@ jspm_packages
 
 # Variables
 variables.env
+serverless.env.yml

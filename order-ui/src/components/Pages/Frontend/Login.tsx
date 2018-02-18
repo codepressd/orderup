@@ -124,7 +124,7 @@ class Login_ extends React.Component<LoginProps & WithStyles<keyof typeof styles
         }
         Axios.post("api/user/login", data)
             .then((res: any) => {
-                console.log("this worked", res.data);
+                console.log("this worked", JSON.parse(res.data.body));
             })
             .catch((error: any) => {
                 console.log("this errored", error);

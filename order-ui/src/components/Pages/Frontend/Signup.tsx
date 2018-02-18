@@ -150,12 +150,14 @@ class Signup_ extends React.Component<SignupProps & WithStyles<keyof typeof styl
 
     handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const data = {
+        let data = {
             "email": e.currentTarget["email"].value,
             "password": e.currentTarget["password"].value,
             "confirmPassword": e.currentTarget["confirmPassword"].value,
             "role": e.currentTarget["role"].value
         }
+        const newData = JSON.stringify(data);
+        console.log(newData, data);
         Axios.post("api/user/signup", data)
             .then((res: any) => {
                 console.log("this worked", res.data);
