@@ -1,13 +1,17 @@
 import * as React from 'react';
+import * as ReactRedux from 'react-redux';
+import * as Redux from 'redux';
 import { withStyles, WithStyles, Theme } from 'material-ui/styles';
+
 import { Column } from '../../Layout/Column';
 import { Row } from '../../Layout/Row';
 import BackendWrap from './BackendWrap';
 import FrontendWrap from './FrontendWrap';
+import * as RouterActions from '../../../actions/RouterActions';
 
 interface AppWrapProps {
     classes: any;
-    activeUser?: string;
+    user?: any;
     children?: any;
 }
 
@@ -27,7 +31,8 @@ class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof st
     }
 
     render() {
-        const userLoggedIn = true;
+        const userLoggedIn = this.props.user.user;
+        console.log(this.props.user);
         // const { classes } = this.props;
         if (userLoggedIn) {
             return (
@@ -52,4 +57,15 @@ class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof st
         }
     }
 }
-export const AppWrap = withStyles(styles)(AppWrap_);
+const mapStateToProps = (state: any) => ({
+    user: state.User,
+});
+
+const mapDispatchToProps = (dispatch: any) => ({
+    changeLocation: Redux.bindActionCreators(RouterActions.push, dispatch),
+});
+
+const mergeProps = (stateProps: Object, dispatchProps: Object, ownProps: Object) => {
+    return { ...ownProps, ...stateProps, ...dispatchProps };
+};
+export const AppWrap = ReactRedux.connect(mapStateToProps, mapDispatchToProps, mergeProps)(withStyles(styles)(AppWrap_));

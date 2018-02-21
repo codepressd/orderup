@@ -47,7 +47,7 @@ class BrowserRoute extends React.Component<BrowserRouteProps, {}>{
 
 }
 const mapStateToProps = (state: any) => ({
-    route: state.RouterReducer
+    route: state.Router
 });
 
 export const mergeProps = (stateProps: Object, dispatchProps: Object, ownProps: Object) => {

@@ -130,7 +130,7 @@ export class SideBars extends React.Component<SideBarProps & WithStyles<'sidebar
 const SideBar = withStyles(styles)(SideBars);
 
 const mapStateToProps = (store: any) => ({
-    route: store.RouterReducer,
+    route: store.Router,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({

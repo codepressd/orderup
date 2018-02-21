@@ -4,6 +4,6 @@ import { RouterReducer } from './RouterReducer';
 import { AuthUserReducer } from './UserReducer';
 
 export default Redux.combineReducers({
-    RouterReducer,
-    AuthUserReducer
+    Router: RouterReducer,
+    User: AuthUserReducer
 });
