@@ -34,7 +34,7 @@ class App extends React.Component {
               <Route component={<Profile classes={{}} />} path="/profile" exact={true} />
               <Route component={<DashBoard classes={{}} />} path="/dashboard" exact={false} />
               <Route component={<Shop />} path="/shop" exact={true} />
-              <Route component={<Orders />} path="/orders" exact={true} />
+              <Route component={<Orders classes={{}} />} path="/orders" exact={true} />
             </Route>
           </div>
         </MuiThemeProvider>

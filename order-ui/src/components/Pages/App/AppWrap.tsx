@@ -31,9 +31,7 @@ class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof st
     }
 
     render() {
-        const userLoggedIn = this.props.user.user;
-        console.log(this.props.user);
-        // const { classes } = this.props;
+        const userLoggedIn = true //this.props.user.user;
         if (userLoggedIn) {
             return (
                 <Column
@@ -51,7 +49,6 @@ class AppWrap_ extends React.Component<AppWrapProps & WithStyles<keyof typeof st
                     className="frontend-app-wrap"
                 >
                     <FrontendWrap {...this.props} />
-                    {/*React.cloneElement(this.props.children, this.props)*/}
                 </Column>
             );
         }

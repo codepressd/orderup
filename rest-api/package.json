@@ -9,6 +9,7 @@
   "devDependencies": {
     "@types/aws-lambda": "0.0.22",
     "@types/node": "^8.0.57",
+    "@types/pg": "^7.4.4",
     "serverless-offline": "^3.17.0",
     "serverless-webpack": "^4.0.0",
     "ts-loader": "^2.3.7",
@@ -22,6 +23,7 @@
     "dotenv": "^5.0.0",
     "jsonwebtoken": "^8.1.1",
     "lodash": "^4.17.5",
-    "mongoose": "^5.0.4"
+    "mongoose": "^5.0.4",
+    "pg": "^7.4.1"
   }
 }
