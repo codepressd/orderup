@@ -19,6 +19,11 @@ functions:
   postSignup:
     handler: functions/users/signup.postSignup
     environment:
+      PGUSER: ${file(./serverless.env.yml):POSTGRES.PGUSER}
+      PGHOST: ${file(./serverless.env.yml):POSTGRES.PGHOST}
+      PGPASSWORD: ${file(./serverless.env.yml):POSTGRES.PGPASSWORD}
+      PGDATABASE: ${file(./serverless.env.yml):POSTGRES.PGDATABASE}
+      PGPORT: ${file(./serverless.env.yml):POSTGRES.PGPORT}
       DB_CONNECT: ${file(./serverless.env.yml):dev.DB_CONNECT}
       SECRET: ${file(./serverless.env.yml):dev.SECRET}
     events:

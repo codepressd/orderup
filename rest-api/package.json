@@ -4,26 +4,28 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sls offline start"
   },
   "devDependencies": {
     "@types/aws-lambda": "0.0.22",
-    "@types/node": "^8.0.57",
-    "@types/pg": "^7.4.4",
-    "serverless-offline": "^3.17.0",
-    "serverless-webpack": "^4.0.0",
+    "@types/node": "^8.10.3",
+    "@types/pg": "^7.4.5",
+    "serverless-offline": "^3.20.1",
+    "serverless-webpack": "^4.4.0",
     "ts-loader": "^2.3.7",
-    "typescript": "^2.5.2",
+    "typescript": "^2.8.1",
     "webpack": "^3.6.0"
   },
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "dotenv": "^5.0.0",
-    "jsonwebtoken": "^8.1.1",
+    "dotenv": "^5.0.1",
+    "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.5",
-    "mongoose": "^5.0.4",
-    "pg": "^7.4.1"
+    "mongoose": "^5.0.13",
+    "pg": "^7.4.1",
+    "pg-native": "^2.2.0"
   }
 }

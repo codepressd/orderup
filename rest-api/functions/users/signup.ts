@@ -1,15 +1,22 @@
 import { APIGatewayEvent, Callback, Context, Handler } from 'aws-lambda';
 
-import { connectToDatabase } from '../../db';
+import { connectToDatabase, connectToPostgres } from '../../db';
 import User from '../../models/User';
 import { generateToken, setUserInfo } from '../../utils/token';
 import { formatErrorResponse, formatLoginSuccessResponse } from '../../utils/format';
+import { sqlQueries } from '../../sql/resources/sqlQueries';
 
-export const postSignup: Handler = (event: APIGatewayEvent, context: Context, cb: Callback) => {
+export const postSignup: Handler = async (event: APIGatewayEvent, context: Context, cb: Callback) => {
     context.callbackWaitsForEmptyEventLoop = false;
     // To get this to work you have to make this any. You can't stringify the post or it gets undefined????
     // I need to figure out why this is happenening
     const requestBody: any = event.body;
+    const Pool = await connectToPostgres();
+    const sqlForLife = await sqlQueries.createTable();
+    Pool.query(sqlForLife, (err, res) => {
+        console.log(err, res);
+        Pool.release();
+    });
     connectToDatabase()
         .then(() => {
             const user = new User({

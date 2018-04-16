@@ -1,5 +1,18 @@
 import * as mongoose from "mongoose";
+import { release } from "os";
+const { Pool } = require('pg');
 
+export const connectToPostgres = async () => {
+    try {
+        const pool = new Pool();
+        const client = await pool.connect();
+        console.log("Connected");
+        return client;
+    } catch (e) {
+        console.log("this errored", e.stack)
+        return e;
+    }
+}
 mongoose.Promise = global.Promise;
 let cachedDB: any = null;
 export const connectToDatabase = () => {
